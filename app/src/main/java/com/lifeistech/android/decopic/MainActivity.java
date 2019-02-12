@@ -73,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 stampName = "Star";
-                ClipData data = ClipData.newPlainText("stamp0", "Drag");
+                ClipData data = ClipData.newPlainText("Stamp0", "Drag");
                 v.startDrag(data, new View.DragShadowBuilder(v), (Object) v, 0);
                 return false;
             }
@@ -83,7 +83,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 stampName = "Heart";
-                ClipData data = ClipData.newPlainText("stamp0", "Drag");
+                ClipData data = ClipData.newPlainText("Stamp1", "Drag");
                 v.startDrag(data, new View.DragShadowBuilder(v), (Object) v, 0);
                 return false;
             }
@@ -93,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 stampName = "Ribon";
-                ClipData data = ClipData.newPlainText("stamp0", "Drag");
+                ClipData data = ClipData.newPlainText("Stamp2", "Drag");
                 v.startDrag(data, new View.DragShadowBuilder(v), (Object) v, 0);
                 return false;
             }
@@ -103,7 +103,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 stampName = "Note";
-                ClipData data = ClipData.newPlainText("stamp0", "Drag");
+                ClipData data = ClipData.newPlainText("Stamp3", "Drag");
                 v.startDrag(data, new View.DragShadowBuilder(v), (Object) v, 0);
                 return false;
             }
@@ -156,10 +156,10 @@ public class MainActivity extends ActionBarActivity {
                             }
                         }
 
-                        return true;
+                        return false;
                     }
 
-                    return false;
+                    return true;
                 }
             });
         }
@@ -167,9 +167,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void addView(int stampsNum) {
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(180, 100);
         ImageView image = new ImageView(getApplicationContext());
         image.setImageResource(getResources().getIdentifier("stamp" + stampsNum, "drawable", getPackageName()));
+
         frame.addView(image, stamp[stampsNum].getWidth(), stamp[stampsNum].getHeight());
+
         image.setTranslationX(x - (stamp[stampsNum].getWidth()) / 2);
         image.setTranslationY(y - (stamp[stampsNum].getHeight()) / 2);
 
@@ -183,7 +186,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-            protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             try {
                 InputStream in = getContentResolver().openInputStream(data.getData());
